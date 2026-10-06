@@ -1,0 +1,29 @@
+<ui-card [heading]="heading()" class="notifications-panel">
+  <ui-button card-actions variant="secondary" [disabled]="unread() === 0" (click)="markAllRead()">Mark all as read</ui-button>
+
+  <div class="notifications-panel__tabs" role="group" aria-label="Filter notifications by type">
+    @for (tab of tabs; track tab.id) {
+      <ui-chip [active]="filter() === tab.id" [count]="count(tab.id)" (toggled)="filter.set(tab.id)">{{ tab.label }}</ui-chip>
+    }
+  </div>
+
+  @if (visible().length) {
+    <ul class="notifications-panel__list">
+      @for (n of visible(); track n.id) {
+        <li class="notifications-panel__row" [class.notifications-panel__row--unread]="!n.read">
+          <span [class]="'notifications-panel__icon notifications-panel__icon--' + tone(n)"><ui-icon [name]="icon(n)" /></span>
+          <span class="notifications-panel__text">
+            <span class="notifications-panel__title">{{ n.title }}</span>
+            <span class="notifications-panel__message">{{ n.message }}</span>
+          </span>
+          <span class="notifications-panel__time">{{ n.at | date: 'EEE HH:mm' }}</span>
+          <ui-button variant="ghost" title="Dismiss" aria-label="Dismiss notification" (click)="dismiss(n.id)"><ui-icon name="x" /></ui-button>
+        </li>
+      }
+    </ul>
+  } @else if (total() === 0) {
+    <ui-empty icon="bell" title="You are all caught up">No notifications right now. Enjoy the quiet.</ui-empty>
+  } @else {
+    <ui-empty icon="bell" title="Nothing here">No notifications of this type.</ui-empty>
+  }
+</ui-card>

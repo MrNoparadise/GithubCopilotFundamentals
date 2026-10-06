@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 export type IconName =
   | 'home' | 'list' | 'users' | 'chart' | 'settings' | 'search' | 'plus'
   | 'check' | 'clock' | 'alert' | 'message' | 'arrow-up' | 'arrow-down' | 'chevron'
-  | 'sparkle' | 'calendar' | 'layers';
+  | 'sparkle' | 'calendar' | 'layers' | 'info' | 'x' | 'x-circle' | 'bell';
 
 const PATHS: Record<IconName, string> = {
   home: 'M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',
@@ -22,6 +22,10 @@ const PATHS: Record<IconName, string> = {
   chevron: 'M9 18l6-6-6-6',
   sparkle: 'M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z',
   calendar: 'M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',
+  info: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 16v-4M12 8h.01',
+  x: 'M18 6L6 18M6 6l12 12',
+  'x-circle': 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM15 9l-6 6M9 9l6 6',
+  bell: 'M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9zM13.7 21a2 2 0 0 1-3.4 0',
   layers: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
 };
 

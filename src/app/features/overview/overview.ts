@@ -9,10 +9,11 @@ import { SettingsStore } from '../../core/data/settings.store';
 import { TasksStore } from '../../core/data/tasks.store';
 import { Activity, TaskStatus } from '../../core/models';
 import { UiAvatar, UiBadge, UiButton, UiCard, UiIcon, UiProgress, UiStat } from '../../shared/ui';
+import { NotificationsPanel } from './notifications-panel/notifications-panel';
 
 @Component({
   selector: 'app-overview',
-  imports: [DatePipe, UiCard, UiButton, UiBadge, UiStat, UiAvatar, UiProgress, UiIcon],
+  imports: [DatePipe, UiCard, UiButton, UiBadge, UiStat, UiAvatar, UiProgress, UiIcon, NotificationsPanel],
   templateUrl: './overview.html',
   styleUrl: './overview.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
