@@ -29,6 +29,13 @@
   }
 }
 
+// Square button around a single icon. The icon is 1em, so the host's font-size sets the size.
+.ui-button--icon {
+  justify-content: center;
+  padding: t.$space-2;
+  line-height: 1;
+}
+
 .ui-button--primary {
   background: t.$gradient-primary;
   color: t.$color-surface;

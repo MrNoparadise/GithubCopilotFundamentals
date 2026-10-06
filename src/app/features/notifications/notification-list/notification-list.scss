@@ -1,0 +1,137 @@
+@use 'styles/tokens' as t;
+
+.notification-list {
+  display: grid;
+  gap: t.$space-4;
+
+  &--compact {
+    gap: t.$space-3;
+  }
+}
+
+.notification-list__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-2;
+}
+
+.notification-list__items {
+  display: grid;
+  gap: t.$space-1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .notification-list--compact & {
+    max-height: t.$size-dropdown-list;
+    overflow-y: auto;
+  }
+}
+
+.notification-list__item {
+  display: flex;
+  align-items: center;
+  gap: t.$space-1;
+  padding-right: t.$space-2;
+  border-radius: t.$radius-md;
+  background: t.$color-surface;
+  transition: background t.$transition-fast;
+
+  &:hover {
+    background: t.$color-surface-alt;
+  }
+
+  &--unread,
+  &--unread:hover {
+    background: t.$color-primary-soft;
+  }
+}
+
+.notification-list__main {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: t.$space-3;
+  min-width: 0;
+  padding: t.$space-3;
+  border-radius: t.$radius-md;
+  cursor: pointer;
+
+  .notification-list:not(.notification-list--compact) & {
+    padding: t.$space-3 t.$space-4;
+  }
+}
+
+// Type icon: soft background, base colour for the glyph.
+.notification-list__type {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: t.$size-avatar-md;
+  height: t.$size-avatar-md;
+  border-radius: 50%;
+  box-shadow: t.$ring-avatar;
+  font-size: t.$font-size-lg;
+
+  .notification-list__item--info & { background: t.$color-info-soft; color: t.$color-info; }
+  .notification-list__item--warning & { background: t.$color-warning-soft; color: t.$color-warning; }
+  .notification-list__item--success & { background: t.$color-success-soft; color: t.$color-success; }
+  .notification-list__item--danger & { background: t.$color-danger-soft; color: t.$color-danger; }
+}
+
+.notification-list__text {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-list__title,
+.notification-list__message {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.notification-list__title {
+  font-weight: 500;
+  color: t.$color-text;
+
+  .notification-list__item--unread & {
+    font-weight: 600;
+  }
+}
+
+.notification-list__dot {
+  display: inline-block;
+  width: t.$size-dot;
+  height: t.$size-dot;
+  margin-right: t.$space-1;
+  border-radius: 50%;
+  background: t.$color-primary;
+  vertical-align: middle;
+}
+
+.notification-list__message {
+  font-size: t.$font-size-sm;
+  color: t.$color-text-muted;
+}
+
+.notification-list__time {
+  flex: none;
+  font-size: t.$font-size-sm;
+  color: t.$color-text-muted;
+  white-space: nowrap;
+}
+
+.notification-list__dismiss {
+  flex: none;
+  font-size: t.$font-size-sm;
+  opacity: 0.6;
+  transition: opacity t.$transition-fast;
+
+  .notification-list__item:hover &,
+  &:focus-within {
+    opacity: 1;
+  }
+}

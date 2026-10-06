@@ -1,0 +1,8 @@
+<div class="notifications">
+  <ui-card [heading]="heading()">
+    <ui-button card-actions variant="secondary" [disabled]="!unreadCount()" (click)="markAllRead()">
+      <ui-icon name="check" /> Mark all as read
+    </ui-button>
+    <app-notification-list />
+  </ui-card>
+</div>

@@ -2,7 +2,10 @@
   class="ui-button"
   [type]="type()"
   [class]="'ui-button ui-button--' + variant()"
+  [class.ui-button--icon]="iconOnly()"
   [disabled]="disabled()"
+  [attr.aria-label]="label()"
+  [attr.aria-expanded]="expanded()"
 >
   <ng-content />
 </button>

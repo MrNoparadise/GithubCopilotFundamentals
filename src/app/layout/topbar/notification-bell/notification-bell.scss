@@ -1,0 +1,60 @@
+@use 'styles/tokens' as t;
+
+.notification-bell {
+  position: relative;
+  display: flex;
+}
+
+.notification-bell__toggle {
+  font-size: t.$font-size-lg;
+}
+
+// Red unread counter on the bell's top-right corner. Clicks pass through to the bell.
+.notification-bell__count {
+  position: absolute;
+  top: -#{t.$space-1};
+  right: -#{t.$space-1};
+  min-width: t.$space-4;
+  height: t.$space-4;
+  padding: 0 t.$space-1;
+  border-radius: t.$radius-full;
+  background: t.$color-danger;
+  box-shadow: t.$ring-avatar;
+  color: t.$color-surface;
+  font-size: t.$font-size-xs;
+  font-weight: 700;
+  line-height: t.$space-4;
+  text-align: center;
+  pointer-events: none;
+}
+
+.notification-bell__panel {
+  position: absolute;
+  top: calc(100% + #{t.$space-2});
+  right: 0;
+  z-index: 20;
+  width: t.$size-dropdown;
+  border-radius: t.$radius-lg;
+  box-shadow: t.$shadow-md;
+}
+
+.notification-bell__actions {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+}
+
+.notification-bell__view-all {
+  display: block;
+  margin-top: t.$space-3;
+  padding-top: t.$space-3;
+  border-top: 1px solid t.$color-border;
+  color: t.$color-primary;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

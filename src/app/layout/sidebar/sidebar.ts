@@ -35,6 +35,7 @@ export class Sidebar {
     { label: 'Tasks', icon: 'list', path: '/tasks', count: this.openTasks },
     { label: 'Team', icon: 'users', path: '/team' },
     { label: 'Reports', icon: 'chart', path: '/reports' },
+    { label: 'Notifications', icon: 'bell', path: '/notifications' },
     { label: 'Settings', icon: 'settings', path: '/settings' },
   ];
 }

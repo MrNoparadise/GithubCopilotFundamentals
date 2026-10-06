@@ -1,0 +1,6 @@
+@use 'styles/tokens' as t;
+
+.notifications {
+  display: grid;
+  gap: t.$space-6;
+}

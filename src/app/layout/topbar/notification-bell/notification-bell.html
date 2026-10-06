@@ -1,0 +1,29 @@
+<div class="notification-bell">
+  <ui-button
+    #bellButton
+    class="notification-bell__toggle"
+    variant="secondary"
+    [iconOnly]="true"
+    [label]="buttonLabel()"
+    [expanded]="open()"
+    (click)="toggle()"
+  >
+    <ui-icon name="bell" />
+  </ui-button>
+  @if (unreadCount()) {
+    <span class="notification-bell__count" aria-hidden="true">{{ counterText() }}</span>
+  }
+
+  @if (open()) {
+    <div class="notification-bell__panel">
+      <ui-card heading="Notifications">
+        <span card-actions class="notification-bell__actions">
+          <ui-badge [tone]="unreadCount() ? 'info' : 'neutral'">{{ unreadCount() }} unread</ui-badge>
+          <ui-button variant="ghost" [disabled]="!unreadCount()" (click)="markAllRead()">Mark all as read</ui-button>
+        </span>
+        <app-notification-list [compact]="true" />
+        <a class="notification-bell__view-all" routerLink="/notifications" (click)="close()">View all</a>
+      </ui-card>
+    </div>
+  }
+</div>

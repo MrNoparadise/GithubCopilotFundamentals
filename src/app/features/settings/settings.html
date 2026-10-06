@@ -33,11 +33,11 @@
   <ui-card heading="Demo data">
     <div class="settings__demo">
       @if (confirmingReset()) {
-        <p class="settings__hint">Delete the tasks and settings saved in this browser and restore the sample data?</p>
+        <p class="settings__hint">Delete the tasks, settings and notification changes saved in this browser and restore the sample data?</p>
         <ui-button variant="secondary" (click)="confirmingReset.set(false)">Cancel</ui-button>
         <ui-button variant="primary" (click)="resetDemoData()">Yes, reset</ui-button>
       } @else {
-        <p class="settings__hint">Tasks and settings are saved in this browser and survive a reload.</p>
+        <p class="settings__hint">Tasks, settings and read or dismissed notifications are saved in this browser and survive a reload.</p>
         <ui-button variant="secondary" (click)="confirmingReset.set(true)">Reset demo data</ui-button>
       }
     </div>

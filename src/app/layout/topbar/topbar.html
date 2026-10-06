@@ -17,6 +17,7 @@
   </label>
   <div class="topbar__actions">
     <ui-button variant="primary" (click)="newTask()"><ui-icon name="plus" /> New task</ui-button>
+    <app-notification-bell />
     <span class="topbar__user">
       <ui-avatar [initials]="user().initials" [name]="user().name" [src]="user().photoUrl" />
       <span class="topbar__user-name">{{ user().name }}</span>

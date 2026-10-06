@@ -1,12 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, provideRouter } from '@angular/router';
+import { MemoryStorage } from '../../../testing/memory-storage';
+import { BROWSER_STORAGE } from '../../core/data/storage';
 import { Topbar } from './topbar';
 
 describe('Topbar', () => {
   let fixture: ComponentFixture<Topbar>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({ providers: [provideRouter([{ path: 'tasks', children: [] }])] });
+    TestBed.configureTestingModule({
+      providers: [provideRouter([{ path: 'tasks', children: [] }]), { provide: BROWSER_STORAGE, useValue: new MemoryStorage() }],
+    });
     fixture = TestBed.createComponent(Topbar);
     await fixture.whenStable();
   });

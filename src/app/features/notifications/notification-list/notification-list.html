@@ -1,0 +1,58 @@
+<div class="notification-list" [class.notification-list--compact]="compact()">
+  <div class="notification-list__tabs" role="group" aria-label="Filter notifications by type">
+    <ui-chip [active]="filter() === 'all'" [count]="compact() ? null : counts().all" (toggled)="filter.set('all')">All</ui-chip>
+    @for (type of types; track type) {
+      <ui-chip [active]="filter() === type" [count]="compact() ? null : counts()[type]" (toggled)="filter.set(type)">
+        {{ typeLabel(type) }}
+      </ui-chip>
+    }
+  </div>
+
+  @if (rows().length) {
+    <ul class="notification-list__items">
+      @for (row of rows(); track row.notification.id) {
+        <li
+          [class]="'notification-list__item notification-list__item--' + row.tone"
+          [class.notification-list__item--unread]="!row.notification.read"
+        >
+          <div
+            class="notification-list__main"
+            role="button"
+            tabindex="0"
+            (click)="markRead(row.notification)"
+            (keydown.enter)="markRead(row.notification)"
+            (keydown.space)="$event.preventDefault(); markRead(row.notification)"
+          >
+            <span class="notification-list__type"><ui-icon [name]="row.icon" /></span>
+            <span class="notification-list__text">
+              <span class="notification-list__title">
+                @if (!row.notification.read) {
+                  <span class="notification-list__dot" role="img" aria-label="Unread"></span>
+                }
+                {{ row.notification.title }}
+              </span>
+              <span class="notification-list__message">{{ row.notification.message }}</span>
+            </span>
+            @if (row.member; as member) {
+              <ui-avatar [size]="compact() ? 'sm' : 'md'" [initials]="member.initials" [name]="member.name" [src]="member.photoUrl" />
+            }
+            <time class="notification-list__time" [attr.datetime]="row.notification.at" [title]="row.notification.at | date: 'medium'">
+              {{ row.time }}
+            </time>
+          </div>
+          <ui-button
+            class="notification-list__dismiss"
+            variant="ghost"
+            [iconOnly]="true"
+            [label]="'Dismiss: ' + row.notification.title"
+            (click)="dismiss(row.notification)"
+          >
+            <ui-icon name="x" />
+          </ui-button>
+        </li>
+      }
+    </ul>
+  } @else {
+    <ui-empty icon="bell" [title]="emptyTitle()">{{ emptyHint() }}</ui-empty>
+  }
+</div>
