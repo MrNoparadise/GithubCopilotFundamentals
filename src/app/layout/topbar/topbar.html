@@ -1,0 +1,25 @@
+<header class="topbar">
+  <div class="topbar__heading">
+    <h1 class="topbar__title">{{ title() }}</h1>
+    <span class="topbar__date">{{ today | date: 'EEEE, d MMMM' }}</span>
+  </div>
+  <label class="topbar__search">
+    <ui-icon name="search" />
+    <input
+      #searchBox
+      type="search"
+      placeholder="Search tasks, people, projects"
+      aria-label="Search"
+      aria-keyshortcuts="Control+K"
+      (keydown.enter)="search($event)"
+    />
+    <kbd class="topbar__kbd">Ctrl K</kbd>
+  </label>
+  <div class="topbar__actions">
+    <ui-button variant="primary" (click)="newTask()"><ui-icon name="plus" /> New task</ui-button>
+    <span class="topbar__user">
+      <ui-avatar [initials]="user().initials" [name]="user().name" [src]="user().photoUrl" />
+      <span class="topbar__user-name">{{ user().name }}</span>
+    </span>
+  </div>
+</header>

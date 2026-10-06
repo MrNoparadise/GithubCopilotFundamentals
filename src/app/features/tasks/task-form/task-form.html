@@ -1,0 +1,44 @@
+<ui-card heading="New task">
+  <form class="task-form" [formGroup]="form" (ngSubmit)="submit()">
+    <label class="task-form__field task-form__field--wide">
+      <span class="task-form__label">Title</span>
+      <input type="text" formControlName="title" placeholder="What needs to be done?" />
+    </label>
+    <label class="task-form__field">
+      <span class="task-form__label">Project</span>
+      <select formControlName="project">
+        @for (p of projects(); track p) {
+          <option [value]="p">{{ p }}</option>
+        }
+      </select>
+    </label>
+    <label class="task-form__field">
+      <span class="task-form__label">Owner</span>
+      <select formControlName="owner">
+        @for (m of members(); track m.id) {
+          <option [value]="m.id">{{ m.name }}</option>
+        }
+      </select>
+    </label>
+    <label class="task-form__field">
+      <span class="task-form__label">Priority</span>
+      <select formControlName="priority">
+        @for (p of priorities; track p) {
+          <option [value]="p">{{ priorityLabel(p) }}</option>
+        }
+      </select>
+    </label>
+    <label class="task-form__field">
+      <span class="task-form__label">Due</span>
+      <input type="date" formControlName="dueDate" />
+    </label>
+    <label class="task-form__field">
+      <span class="task-form__label">Estimate (h)</span>
+      <input type="number" min="1" formControlName="estimateHours" />
+    </label>
+    <div class="task-form__actions">
+      <ui-button variant="secondary" (click)="closed.emit()">Cancel</ui-button>
+      <ui-button type="submit" variant="primary"><ui-icon name="plus" /> Add task</ui-button>
+    </div>
+  </form>
+</ui-card>

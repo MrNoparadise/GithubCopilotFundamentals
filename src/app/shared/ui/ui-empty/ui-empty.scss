@@ -1,0 +1,20 @@
+@use 'styles/tokens' as t;
+
+.ui-empty {
+  display: grid;
+  justify-items: center;
+  gap: t.$space-2;
+  padding: t.$space-8 t.$space-4;
+  text-align: center;
+  color: t.$color-text-muted;
+}
+.ui-empty__icon {
+  width: t.$size-avatar-lg;
+  height: t.$size-avatar-lg;
+  padding: t.$space-3;
+  border-radius: 50%;
+  background: t.$color-primary-soft;
+  color: t.$color-primary;
+}
+.ui-empty__title { margin: 0; font-weight: 600; color: t.$color-text; }
+.ui-empty__hint { margin: 0; font-size: t.$font-size-sm; }

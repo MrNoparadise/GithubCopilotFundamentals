@@ -1,0 +1,109 @@
+<div class="overview">
+  <section class="overview__hero">
+    <div class="overview__hero-text">
+      <h2 class="overview__greeting">{{ greeting() }}, {{ firstName() }}</h2>
+      <p class="overview__summary">
+        <ui-icon name="calendar" />
+        {{ dueThisWeek() }} {{ dueThisWeek() === 1 ? 'task' : 'tasks' }} due this week · {{ counts().blocked }} blocked
+      </p>
+    </div>
+    <div class="overview__team">
+      <div class="overview__faces">
+        @for (m of members(); track m.id) {
+          <ui-avatar [initials]="m.initials" [name]="m.name" [src]="m.photoUrl" />
+        }
+      </div>
+      <span class="overview__team-label">{{ members().length }} teammates</span>
+    </div>
+  </section>
+
+  <section class="overview__stats">
+    <ui-stat label="Open tasks" icon="list" [value]="counts().open + counts()['in-progress']" [delta]="12" [series]="[4, 5, 5, 7, 6, 8, 7]" />
+    <ui-stat label="Blocked" icon="alert" [value]="counts().blocked" [delta]="-33" [series]="[3, 3, 2, 4, 3, 2, 2]" tone="danger" [lowerIsBetter]="true" />
+    <ui-stat label="Done this week" icon="check" [value]="doneThisWeek()" [delta]="doneDelta()" [series]="[2, 3, 3, 4, 5, 5, 6]" tone="success" />
+    <ui-stat label="Open estimate" icon="clock" [value]="openHours() + ' h'" [delta]="-8" [series]="[70, 66, 64, 68, 60, 58, 58]" tone="warning" [lowerIsBetter]="true" />
+  </section>
+
+  <section class="overview__grid">
+    <ui-card heading="Due soon" class="overview__tasks">
+      <ui-button card-actions variant="secondary" (click)="viewAll()">View all</ui-button>
+      <table class="overview__table">
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Owner</th>
+            <th>Due</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (task of dueSoon(); track task.id) {
+            <tr>
+              <td>
+                <span class="overview__task-title">{{ task.title }}</span>
+                <span class="overview__task-project">{{ task.project }}</span>
+              </td>
+              <td>
+                <span class="overview__owner">
+                  <ui-avatar size="sm" [initials]="memberInitials(task.owner)" [name]="memberName(task.owner)" [src]="memberPhoto(task.owner)" />
+                  {{ memberName(task.owner) }}
+                </span>
+              </td>
+              <td class="overview__due">{{ task.dueDate | date: 'MMM d' }}</td>
+              <td><ui-badge [tone]="tone(task.status)">{{ label(task.status) }}</ui-badge></td>
+              <td class="overview__row-actions">
+                <ui-button variant="ghost" (click)="markDone(task.id)"><ui-icon name="check" /> Done</ui-button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </ui-card>
+
+    <ui-card heading="Throughput · 14 days" class="overview__chart">
+      <div class="overview__chart-summary">
+        <span class="overview__chart-total">{{ closedTotal() }}</span>
+        <span class="overview__chart-caption">tasks closed · best day {{ maxThroughput() }}</span>
+      </div>
+      <div class="overview__bars" role="img" aria-label="Tasks closed per day">
+        @for (v of throughput(); track $index) {
+          <div class="overview__bar-col">
+            <div class="overview__bar" [class.overview__bar--today]="$last" [style.height.%]="(v / maxThroughput()) * 100" [title]="v + ' closed'"></div>
+          </div>
+        }
+      </div>
+      <div class="overview__axis"><span>2 weeks ago</span><span>today</span></div>
+    </ui-card>
+
+    <ui-card heading="Team load" class="overview__load">
+      @for (row of load(); track row.member.id) {
+        <div class="overview__load-row">
+          <ui-avatar [initials]="row.member.initials" [name]="row.member.name" [src]="row.member.photoUrl" />
+          <div class="overview__load-text">
+            <span class="overview__load-name">{{ row.member.name }}</span>
+            <span class="overview__load-hours">{{ row.hours }} / {{ row.member.capacityHours }} h</span>
+          </div>
+          <ui-progress [value]="row.percent" [warnAt]="warnAt()" />
+        </div>
+      }
+    </ui-card>
+
+    <ui-card heading="Activity" class="overview__activity">
+      <ul class="overview__feed">
+        @for (a of activity(); track a.id) {
+          <li class="overview__feed-item">
+            <span class="overview__feed-who">
+              <ui-avatar [initials]="memberInitials(a.actor)" [name]="memberName(a.actor)" [src]="memberPhoto(a.actor)" />
+              <span [class]="'overview__feed-kind overview__feed-kind--' + activityTone(a)"><ui-icon [name]="activityIcon(a)" /></span>
+            </span>
+            <span class="overview__feed-text">
+              <strong>{{ memberName(a.actor) }}</strong> {{ activityText(a) }} <em>{{ taskTitle(a.taskId) }}</em>
+            </span>
+            <span class="overview__feed-time">{{ a.at | date: 'EEE HH:mm' }}</span>
+          </li>
+        }
+      </ul>
+    </ui-card>
+  </section>
+</div>

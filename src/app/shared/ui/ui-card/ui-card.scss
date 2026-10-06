@@ -1,0 +1,26 @@
+@use 'styles/tokens' as t;
+
+.ui-card {
+  height: 100%;
+  background: t.$color-surface;
+  border: 1px solid t.$color-border;
+  border-radius: t.$radius-lg;
+  box-shadow: t.$shadow-sm;
+}
+
+.ui-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-3;
+  padding: t.$space-3 t.$space-4;
+  border-bottom: 1px solid t.$color-border;
+}
+
+.ui-card__heading {
+  font-size: t.$font-size-lg;
+}
+
+.ui-card__body {
+  padding: t.$space-4;
+}

@@ -1,0 +1,69 @@
+@use 'styles/tokens' as t;
+
+.team {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: t.$space-4;
+
+  ui-card {
+    transition:
+      box-shadow t.$transition-fast,
+      transform t.$transition-fast;
+
+    &:hover { transform: translateY(-1px); }
+  }
+}
+
+// Fills the top of the card body, edge to edge.
+.team__cover {
+  height: t.$size-cover;
+  margin: -#{t.$space-4} -#{t.$space-4} 0;
+  border-radius: t.$radius-lg t.$radius-lg 0 0;
+  background: t.$gradient-hero;
+  border-bottom: 1px solid t.$color-border;
+}
+
+.team__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: -#{t.$size-avatar-xl * 0.5};
+}
+
+.team__photo {
+  border-radius: 50%;
+  box-shadow: t.$shadow-md;
+}
+
+.team__who {
+  display: grid;
+  gap: t.$space-1;
+  margin: t.$space-3 0 t.$space-4;
+}
+.team__name { font-size: t.$font-size-lg; font-weight: 600; }
+.team__role { font-size: t.$font-size-sm; color: t.$color-text-muted; }
+
+.team__load {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: t.$space-2;
+  font-size: t.$font-size-sm;
+  color: t.$color-text-muted;
+}
+.team__percent { font-weight: 600; color: t.$color-text; }
+
+.team__facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: t.$space-2;
+  margin: t.$space-4 0 0;
+
+  div {
+    padding: t.$space-2;
+    border-radius: t.$radius-md;
+    background: t.$color-surface-alt;
+    text-align: center;
+  }
+  dt { font-size: t.$font-size-xs; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: t.$color-text-muted; }
+  dd { margin: 0; font-size: t.$font-size-lg; font-weight: 700; }
+}

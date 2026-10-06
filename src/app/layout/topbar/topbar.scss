@@ -1,0 +1,93 @@
+@use 'styles/tokens' as t;
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: t.$space-6;
+  padding: t.$space-3 t.$space-6;
+  background: t.$color-surface-glass;
+  backdrop-filter: blur(t.$blur-glass);
+  border-bottom: 1px solid t.$color-border;
+}
+
+.topbar__heading {
+  display: grid;
+  margin-right: auto;
+}
+
+.topbar__title {
+  font-size: t.$font-size-xl;
+  line-height: 1.2;
+}
+
+.topbar__date {
+  font-size: t.$font-size-sm;
+  color: t.$color-text-muted;
+}
+
+.topbar__search {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  width: t.$size-search;
+  padding: t.$space-2 t.$space-3;
+  border: 1px solid t.$color-border;
+  border-radius: t.$radius-md;
+  background: t.$color-surface-alt;
+  color: t.$color-text-muted;
+  transition:
+    border-color t.$transition-fast,
+    box-shadow t.$transition-fast,
+    background t.$transition-fast;
+
+  &:focus-within {
+    border-color: t.$color-primary;
+    background: t.$color-surface;
+    box-shadow: t.$ring-focus;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    color: t.$color-text;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.topbar__kbd {
+  padding: 0 t.$space-2;
+  border: 1px solid t.$color-border;
+  border-radius: t.$radius-sm;
+  background: t.$color-surface;
+  font-family: inherit;
+  font-size: t.$font-size-xs;
+  font-weight: 600;
+  line-height: 1.8;
+  color: t.$color-text-muted;
+}
+
+.topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: t.$space-4;
+}
+
+.topbar__user {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  padding-left: t.$space-4;
+  border-left: 1px solid t.$color-border;
+}
+
+.topbar__user-name {
+  font-weight: 600;
+  white-space: nowrap;
+}

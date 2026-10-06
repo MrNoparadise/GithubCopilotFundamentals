@@ -1,0 +1,45 @@
+<div class="settings">
+  <form class="settings__form" [formGroup]="form" (ngSubmit)="save()">
+    <ui-card heading="Workspace">
+      <div class="settings__row">
+        <label for="workspaceName">Name</label>
+        <input id="workspaceName" type="text" formControlName="workspaceName" />
+      </div>
+      <div class="settings__row">
+        <label for="weekStart">Week starts on</label>
+        <select id="weekStart" formControlName="weekStart">
+          <option value="monday">Monday</option>
+          <option value="sunday">Sunday</option>
+        </select>
+      </div>
+      <div class="settings__row">
+        <label for="capacityWarning">Capacity warning at</label>
+        <div class="settings__inline">
+          <input id="capacityWarning" type="number" min="50" max="100" formControlName="capacityWarning" />
+          <span>% of weekly hours</span>
+        </div>
+      </div>
+    </ui-card>
+
+    <div class="settings__actions">
+      @if (saved()) {
+        <span class="settings__saved">Saved</span>
+      }
+      <ui-button variant="secondary" (click)="reset()">Reset</ui-button>
+      <ui-button type="submit" variant="primary">Save changes</ui-button>
+    </div>
+  </form>
+
+  <ui-card heading="Demo data">
+    <div class="settings__demo">
+      @if (confirmingReset()) {
+        <p class="settings__hint">Delete the tasks and settings saved in this browser and restore the sample data?</p>
+        <ui-button variant="secondary" (click)="confirmingReset.set(false)">Cancel</ui-button>
+        <ui-button variant="primary" (click)="resetDemoData()">Yes, reset</ui-button>
+      } @else {
+        <p class="settings__hint">Tasks and settings are saved in this browser and survive a reload.</p>
+        <ui-button variant="secondary" (click)="confirmingReset.set(true)">Reset demo data</ui-button>
+      }
+    </div>
+  </ui-card>
+</div>

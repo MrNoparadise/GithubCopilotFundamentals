@@ -1,0 +1,28 @@
+<aside class="sidebar">
+  <div class="sidebar__brand">
+    <span class="sidebar__logo"><ui-icon name="sparkle" /></span>
+    <span class="sidebar__brand-text">
+      <span class="sidebar__name">Team Dashboard</span>
+      <span class="sidebar__tagline">Delivery workspace</span>
+    </span>
+  </div>
+  <span class="sidebar__section">Menu</span>
+  <nav class="sidebar__nav">
+    @for (item of items; track item.path) {
+      <a class="sidebar__link" [routerLink]="item.path" routerLinkActive="sidebar__link--active">
+        <ui-icon [name]="item.icon" />
+        <span class="sidebar__label">{{ item.label }}</span>
+        @if (item.count) {
+          <span class="sidebar__count">{{ item.count() }}</span>
+        }
+      </a>
+    }
+  </nav>
+  <div class="sidebar__footer">
+    <span class="sidebar__workspace-icon"><ui-icon name="layers" /></span>
+    <span class="sidebar__workspace-text">
+      <span class="sidebar__workspace">Workspace</span>
+      <span class="sidebar__workspace-name">{{ workspaceName() }}</span>
+    </span>
+  </div>
+</aside>

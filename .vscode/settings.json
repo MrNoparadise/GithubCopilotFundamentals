@@ -1,0 +1,9 @@
+{
+  // Instruction files are on by default in current VS Code; set explicitly so the
+  // workshop behaves the same on every machine.
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "chat.useAgentsMdFile": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
+}

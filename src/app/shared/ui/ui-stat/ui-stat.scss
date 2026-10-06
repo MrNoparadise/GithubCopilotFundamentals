@@ -1,0 +1,103 @@
+@use 'styles/tokens' as t;
+
+.ui-stat {
+  display: grid;
+  gap: t.$space-3;
+  height: 100%;
+  padding: t.$space-4;
+  background: t.$color-surface;
+  border: 1px solid t.$color-border;
+  border-radius: t.$radius-lg;
+  box-shadow: t.$shadow-sm;
+  color: t.$color-primary;
+  transition:
+    box-shadow t.$transition-fast,
+    transform t.$transition-fast;
+
+  &:hover {
+    box-shadow: t.$shadow-md;
+    transform: translateY(-1px);
+  }
+
+  &--success { color: t.$color-success; }
+  &--warning { color: t.$color-warning; }
+  &--danger { color: t.$color-danger; }
+}
+
+.ui-stat__head {
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+}
+
+.ui-stat__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: t.$size-icon-chip;
+  height: t.$size-icon-chip;
+  border-radius: t.$radius-md;
+  background: t.$color-primary-soft;
+  font-size: t.$font-size-lg;
+
+  .ui-stat--success & { background: t.$color-success-soft; }
+  .ui-stat--warning & { background: t.$color-warning-soft; }
+  .ui-stat--danger & { background: t.$color-danger-soft; }
+}
+
+.ui-stat__label {
+  font-size: t.$font-size-md;
+  font-weight: 500;
+  color: t.$color-text-muted;
+}
+
+.ui-stat__body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: t.$space-3;
+}
+
+.ui-stat__text {
+  display: grid;
+  gap: t.$space-2;
+}
+
+.ui-stat__value {
+  font-size: t.$font-size-2xl;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: t.$color-text;
+}
+
+.ui-stat__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-1;
+  width: fit-content;
+  padding: t.$space-1 t.$space-2;
+  border-radius: t.$radius-full;
+  background: t.$color-success-soft;
+  font-size: t.$font-size-sm;
+  font-weight: 500;
+  color: t.$color-success;
+  white-space: nowrap;
+
+  &--bad {
+    background: t.$color-danger-soft;
+    color: t.$color-danger;
+  }
+}
+
+.ui-stat__spark {
+  width: t.$size-icon-chip * 2.5;
+  height: t.$size-icon-chip;
+  flex: none;
+  overflow: visible;
+}
+
+.ui-stat__spark-area {
+  fill: currentColor;
+  opacity: 0.12;
+}

@@ -1,0 +1,18 @@
+@use 'styles/tokens' as t;
+
+.ui-progress {
+  width: 100%;
+  height: t.$size-bar;
+  background: t.$color-surface-alt;
+  border-radius: t.$radius-full;
+  overflow: hidden;
+}
+.ui-progress__bar {
+  height: 100%;
+  border-radius: t.$radius-full;
+  transition: width 400ms ease;
+
+  &--primary { background: t.$gradient-primary; }
+  &--warning { background: t.$color-warning; }
+  &--danger { background: t.$color-danger; }
+}

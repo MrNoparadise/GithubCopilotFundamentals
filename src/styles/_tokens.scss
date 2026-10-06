@@ -1,0 +1,84 @@
+// Design tokens — the single source of truth for spacing, colour and radius.
+// Components use these variables (or the CSS custom properties in styles.scss).
+// Never write raw px or hex values in component styles.
+
+// Spacing scale: 4px base. Use multiples only.
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-6: 24px;
+$space-8: 32px;
+$space-12: 48px;
+
+// Colours
+$color-primary: #4f46e5;
+$color-primary-hover: #4338ca;
+$color-primary-soft: #eef2ff;
+$color-accent: #7c3aed;
+$color-accent-soft: #f5f3ff;
+$color-surface: #ffffff;
+$color-surface-alt: #f5f6fa;
+$color-surface-glass: rgba(255, 255, 255, 0.85);
+$color-border: #e5e7ef;
+$color-text: #111827;
+$color-text-muted: #6b7280;
+$color-success: #047857;
+$color-success-soft: #ecfdf5;
+$color-warning: #b45309;
+$color-warning-soft: #fffbeb;
+$color-danger: #b91c1c;
+$color-danger-soft: #fef2f2;
+$color-info: #1d4ed8;
+$color-info-soft: #eff6ff;
+
+// Dark navigation (sidebar). Text on it uses the on-dark colours.
+$color-nav: #12122b;
+$color-on-dark: #e0e7ff;
+$color-on-dark-muted: rgba(224, 231, 255, 0.62);
+$color-on-dark-hover: rgba(255, 255, 255, 0.06);
+$color-on-dark-active: rgba(129, 140, 248, 0.2);
+$color-on-dark-border: rgba(255, 255, 255, 0.08);
+
+// Gradients
+$gradient-brand: linear-gradient(135deg, #6366f1 0%, #8b5cf6 55%, #d946ef 100%);
+$gradient-primary: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+$gradient-nav: linear-gradient(180deg, #16163a 0%, #12122b 60%, #1a1240 100%);
+$gradient-hero: linear-gradient(120deg, #eef2ff 0%, #f5f3ff 55%, #fdf4ff 100%);
+
+// Radius and elevation
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 14px;
+$radius-full: 999px;
+$shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.04), 0 1px 3px rgba(17, 24, 39, 0.06);
+$shadow-md: 0 10px 24px -8px rgba(17, 24, 39, 0.14);
+$shadow-primary: 0 6px 16px -6px rgba(79, 70, 229, 0.6);
+$ring-focus: 0 0 0 3px rgba(99, 102, 241, 0.3);
+$ring-avatar: 0 0 0 2px #ffffff;
+
+// Sizes
+$size-sidebar: 248px;
+$size-avatar-sm: 24px;
+$size-avatar-md: 32px;
+$size-avatar-lg: 48px;
+$size-avatar-xl: 72px;
+$size-icon-chip: 36px;
+$size-dot: 6px;
+$size-bar: 8px;
+$size-cover: 64px;
+$size-search: 340px;
+$size-chart: 132px;
+
+// Motion
+$transition-fast: 150ms ease;
+$blur-glass: 12px;
+
+// Type
+$font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+$font-size-xs: 11px;
+$font-size-sm: 12px;
+$font-size-md: 14px;
+$font-size-lg: 16px;
+$font-size-xl: 22px;
+$font-size-2xl: 28px;

@@ -1,0 +1,60 @@
+@use 'styles/tokens' as t;
+
+.ui-button {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-2;
+  padding: t.$space-2 t.$space-4;
+  border-radius: t.$radius-md;
+  border: 1px solid transparent;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background t.$transition-fast,
+    box-shadow t.$transition-fast,
+    filter t.$transition-fast,
+    transform t.$transition-fast;
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+.ui-button--primary {
+  background: t.$gradient-primary;
+  color: t.$color-surface;
+  box-shadow: t.$shadow-primary;
+
+  &:hover:not(:disabled) {
+    filter: brightness(1.1);
+  }
+}
+
+.ui-button--secondary {
+  background: t.$color-surface;
+  color: t.$color-text;
+  border-color: t.$color-border;
+  box-shadow: t.$shadow-sm;
+
+  &:hover:not(:disabled) {
+    background: t.$color-surface-alt;
+  }
+}
+
+.ui-button--ghost {
+  background: transparent;
+  color: t.$color-primary;
+
+  &:hover:not(:disabled) {
+    background: t.$color-primary-soft;
+  }
+}

@@ -1,0 +1,24 @@
+@use 'styles/tokens' as t;
+
+.app {
+  display: grid;
+  grid-template-columns: t.$size-sidebar 1fr;
+  min-height: 100vh;
+}
+
+.app__sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.app__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.app__content {
+  flex: 1;
+  padding: t.$space-6;
+}

@@ -1,0 +1,42 @@
+@use 'styles/tokens' as t;
+
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-1;
+  padding: t.$space-1 t.$space-2;
+  border-radius: t.$radius-full;
+  font-size: t.$font-size-sm;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+
+  &::before {
+    content: '';
+    width: t.$size-dot;
+    height: t.$size-dot;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+.ui-badge--neutral {
+  background: t.$color-surface-alt;
+  color: t.$color-text-muted;
+}
+.ui-badge--info {
+  background: t.$color-info-soft;
+  color: t.$color-info;
+}
+.ui-badge--success {
+  background: t.$color-success-soft;
+  color: t.$color-success;
+}
+.ui-badge--warning {
+  background: t.$color-warning-soft;
+  color: t.$color-warning;
+}
+.ui-badge--danger {
+  background: t.$color-danger-soft;
+  color: t.$color-danger;
+}

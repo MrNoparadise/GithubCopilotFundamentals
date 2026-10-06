@@ -1,0 +1,29 @@
+@use 'styles/tokens' as t;
+
+:host {
+  display: inline-flex;
+  flex: none;
+}
+
+.ui-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  object-fit: cover;
+  background: t.$color-primary-soft;
+  box-shadow: t.$ring-avatar;
+  flex: none;
+}
+
+.ui-avatar--initials {
+  background: t.$gradient-brand;
+  color: t.$color-surface;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.ui-avatar--sm { width: t.$size-avatar-sm; height: t.$size-avatar-sm; font-size: t.$font-size-xs; }
+.ui-avatar--md { width: t.$size-avatar-md; height: t.$size-avatar-md; font-size: t.$font-size-sm; }
+.ui-avatar--lg { width: t.$size-avatar-lg; height: t.$size-avatar-lg; font-size: t.$font-size-lg; }
+.ui-avatar--xl { width: t.$size-avatar-xl; height: t.$size-avatar-xl; font-size: t.$font-size-xl; }

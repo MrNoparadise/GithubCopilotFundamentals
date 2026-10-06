@@ -1,0 +1,71 @@
+<div class="tasks">
+  <div class="tasks__toolbar">
+    <div class="tasks__chips">
+      @for (s of statuses; track s) {
+        <ui-chip [active]="activeStatuses().has(s)" [count]="counts()[s]" (toggled)="toggleStatus(s)">{{ statusLabel(s) }}</ui-chip>
+      }
+    </div>
+    <label class="tasks__search">
+      <ui-icon name="search" />
+      <input type="search" placeholder="Filter by title, project or owner" [value]="query()" (input)="setQuery($event)" />
+    </label>
+  </div>
+
+  @if (composing()) {
+    <app-task-form (closed)="closeForm()" />
+  }
+
+  <ui-card [heading]="rows().length + ' tasks · ' + totalHours() + ' h estimated'">
+    <ui-button card-actions variant="primary" [disabled]="composing()" (click)="openForm()"><ui-icon name="plus" /> New task</ui-button>
+    @if (rows().length) {
+      <table class="tasks__table">
+        <thead>
+          <tr>
+            @for (col of sortColumns; track col.key) {
+              <th [attr.aria-sort]="ariaSort(col.key)">
+                <button type="button" class="tasks__sort" (click)="sortBy(col.key)">
+                  {{ col.label }}
+                  @if (ariaSort(col.key); as dir) {
+                    <ui-icon [name]="dir === 'ascending' ? 'arrow-up' : 'arrow-down'" />
+                  }
+                </button>
+              </th>
+            }
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (task of rows(); track task.id) {
+            <tr>
+              <td>
+                <span class="tasks__title">{{ task.title }}</span>
+                <span class="tasks__project">{{ task.project }}</span>
+              </td>
+              <td>
+                <span class="tasks__owner">
+                  <ui-avatar size="sm" [initials]="memberInitials(task.owner)" [name]="memberName(task.owner)" [src]="memberPhoto(task.owner)" />
+                  {{ memberName(task.owner) }}
+                </span>
+              </td>
+              <td><ui-badge [tone]="priorityTone(task.priority)">{{ priorityLabel(task.priority) }}</ui-badge></td>
+              <td class="tasks__muted">{{ task.dueDate | date: 'MMM d' }}</td>
+              <td class="tasks__muted">{{ task.estimateHours }} h</td>
+              <td><ui-badge [tone]="statusTone(task.status)">{{ statusLabel(task.status) }}</ui-badge></td>
+              <td class="tasks__row-actions">
+                @if (task.status !== 'done') {
+                  <ui-button variant="ghost" (click)="advance(task)">
+                    {{ task.status === 'blocked' ? 'Unblock' : task.status === 'open' ? 'Start' : 'Finish' }}
+                    <ui-icon name="chevron" />
+                  </ui-button>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <ui-empty title="No tasks match">Change the status filter or clear the search.</ui-empty>
+    }
+  </ui-card>
+</div>

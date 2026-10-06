@@ -1,0 +1,9 @@
+<section class="ui-card">
+  @if (heading()) {
+    <header class="ui-card__header">
+      <h2 class="ui-card__heading">{{ heading() }}</h2>
+      <div class="ui-card__actions"><ng-content select="[card-actions]" /></div>
+    </header>
+  }
+  <div class="ui-card__body"><ng-content /></div>
+</section>

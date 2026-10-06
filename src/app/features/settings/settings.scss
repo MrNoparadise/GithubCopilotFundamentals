@@ -1,0 +1,65 @@
+@use 'styles/tokens' as t;
+
+.settings {
+  display: grid;
+  gap: t.$space-6;
+  max-width: 720px;
+}
+
+.settings__form {
+  display: grid;
+  gap: t.$space-4;
+}
+
+.settings__row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: center;
+  gap: t.$space-4;
+  padding: t.$space-2 0;
+
+  label { font-weight: 500; }
+
+  input,
+  select {
+    width: 100%;
+    max-width: 320px;
+    padding: t.$space-2 t.$space-3;
+    border: 1px solid t.$color-border;
+    border-radius: t.$radius-md;
+    font: inherit;
+    color: t.$color-text;
+    background: t.$color-surface;
+  }
+
+  input.ng-invalid.ng-touched { border-color: t.$color-danger; }
+}
+
+.settings__inline {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  color: t.$color-text-muted;
+
+  input { max-width: 96px; }
+}
+
+.settings__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: t.$space-3;
+}
+.settings__saved { color: t.$color-success; font-weight: 600; }
+
+.settings__demo {
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+}
+
+.settings__hint {
+  flex: 1;
+  margin: 0;
+  color: t.$color-text-muted;
+}

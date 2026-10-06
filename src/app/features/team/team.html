@@ -1,0 +1,31 @@
+<div class="team">
+  @for (c of cards(); track c.member.id) {
+    <ui-card>
+      <div class="team__cover"></div>
+      <div class="team__head">
+        <ui-avatar class="team__photo" size="xl" [initials]="c.member.initials" [name]="c.member.name" [src]="c.member.photoUrl" />
+        @if (c.percent > 100) {
+          <ui-badge tone="danger">Over capacity</ui-badge>
+        } @else if (c.percent > warnAt()) {
+          <ui-badge tone="warning">Near capacity</ui-badge>
+        } @else {
+          <ui-badge tone="success">Available</ui-badge>
+        }
+      </div>
+      <div class="team__who">
+        <span class="team__name">{{ c.member.name }}</span>
+        <span class="team__role">{{ c.member.role }} · {{ c.member.capacityHours }} h/week</span>
+      </div>
+      <div class="team__load">
+        <span>{{ c.hours }} h planned</span>
+        <span class="team__percent">{{ c.percent }}%</span>
+      </div>
+      <ui-progress [value]="c.percent" [warnAt]="warnAt()" />
+      <dl class="team__facts">
+        <div><dt>Open</dt><dd>{{ c.open }}</dd></div>
+        <div><dt>Blocked</dt><dd>{{ c.blocked }}</dd></div>
+        <div><dt>Done</dt><dd>{{ c.done }}</dd></div>
+      </dl>
+    </ui-card>
+  }
+</div>

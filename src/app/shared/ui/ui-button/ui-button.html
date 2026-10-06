@@ -1,0 +1,8 @@
+<button
+  class="ui-button"
+  [type]="type()"
+  [class]="'ui-button ui-button--' + variant()"
+  [disabled]="disabled()"
+>
+  <ng-content />
+</button>

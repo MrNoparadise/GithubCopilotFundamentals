@@ -1,0 +1,94 @@
+@use 'styles/tokens' as t;
+
+// Inter, self-hosted so the app looks the same offline. Latin subset, weights 400–700.
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+}
+
+// Expose tokens as CSS custom properties so templates and inline styles
+// can reference them without importing SCSS.
+:root {
+  --space-1: #{t.$space-1};
+  --space-2: #{t.$space-2};
+  --space-3: #{t.$space-3};
+  --space-4: #{t.$space-4};
+  --space-6: #{t.$space-6};
+  --space-8: #{t.$space-8};
+  --space-12: #{t.$space-12};
+
+  --color-primary: #{t.$color-primary};
+  --color-primary-hover: #{t.$color-primary-hover};
+  --color-primary-soft: #{t.$color-primary-soft};
+  --color-accent: #{t.$color-accent};
+  --color-accent-soft: #{t.$color-accent-soft};
+  --color-surface: #{t.$color-surface};
+  --color-surface-alt: #{t.$color-surface-alt};
+  --color-border: #{t.$color-border};
+  --color-text: #{t.$color-text};
+  --color-text-muted: #{t.$color-text-muted};
+  --color-success: #{t.$color-success};
+  --color-success-soft: #{t.$color-success-soft};
+  --color-warning: #{t.$color-warning};
+  --color-warning-soft: #{t.$color-warning-soft};
+  --color-danger: #{t.$color-danger};
+  --color-danger-soft: #{t.$color-danger-soft};
+  --color-info: #{t.$color-info};
+  --color-info-soft: #{t.$color-info-soft};
+
+  --gradient-brand: #{t.$gradient-brand};
+  --gradient-primary: #{t.$gradient-primary};
+
+  --radius-sm: #{t.$radius-sm};
+  --radius-md: #{t.$radius-md};
+  --radius-lg: #{t.$radius-lg};
+  --radius-full: #{t.$radius-full};
+  --shadow-sm: #{t.$shadow-sm};
+  --shadow-md: #{t.$shadow-md};
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: t.$font-family;
+  font-size: t.$font-size-md;
+  font-feature-settings: 'cv11', 'ss01';
+  color: t.$color-text;
+  background: t.$color-surface-alt;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: t.$ring-focus;
+}
+
+// Search boxes draw the ring on their wrapper (`:focus-within`) instead.
+input:not([type='search']),
+select {
+  transition: border-color t.$transition-fast, box-shadow t.$transition-fast;
+
+  &:focus {
+    border-color: t.$color-primary;
+    box-shadow: t.$ring-focus;
+  }
+}
+
+::selection {
+  background: t.$color-primary-soft;
+}

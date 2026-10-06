@@ -1,0 +1,98 @@
+@use 'styles/tokens' as t;
+
+.reports { display: grid; gap: t.$space-6; }
+
+.reports__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: t.$space-4;
+}
+
+.reports__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: t.$space-4;
+}
+.reports__projects { grid-column: 1 / -1; }
+
+.reports__line {
+  width: 100%;
+  height: t.$size-chart;
+  color: t.$color-primary;
+  overflow: visible;
+}
+.reports__area {
+  fill: currentColor;
+  opacity: 0.1;
+}
+.reports__axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: t.$space-2;
+  font-size: t.$font-size-sm;
+  color: t.$color-text-muted;
+}
+
+.reports__share-bar {
+  display: flex;
+  gap: t.$space-1;
+  height: t.$space-3;
+  border-radius: t.$radius-full;
+  overflow: hidden;
+  background: t.$color-surface-alt;
+}
+.reports__share-seg {
+  border-radius: t.$radius-full;
+
+  &--info { background: t.$color-info; }
+  &--neutral { background: t.$color-text-muted; }
+  &--danger { background: t.$color-danger; }
+  &--success { background: t.$color-success; }
+}
+.reports__legend {
+  list-style: none;
+  margin: t.$space-4 0 0;
+  padding: 0;
+  display: grid;
+  gap: t.$space-2;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: t.$font-size-sm;
+    color: t.$color-text-muted;
+  }
+}
+
+.reports__table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: t.$space-3 t.$space-2;
+    text-align: left;
+    border-bottom: 1px solid t.$color-border;
+  }
+  th {
+    font-size: t.$font-size-xs;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: t.$color-text-muted;
+    text-transform: uppercase;
+  }
+  tbody tr:hover { background: t.$color-surface-alt; }
+  tr:last-child td { border-bottom: 0; }
+}
+.reports__project { font-weight: 500; }
+.reports__progress {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  font-size: t.$font-size-sm;
+  color: t.$color-text-muted;
+}
+.reports__progress-bar {
+  flex: 0 0 t.$size-chart;
+}

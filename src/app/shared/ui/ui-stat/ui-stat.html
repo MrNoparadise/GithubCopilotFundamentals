@@ -1,0 +1,22 @@
+<div [class]="'ui-stat ui-stat--' + tone()">
+  <div class="ui-stat__head">
+    @if (icon(); as name) {
+      <span class="ui-stat__icon"><ui-icon [name]="name" /></span>
+    }
+    <span class="ui-stat__label">{{ label() }}</span>
+  </div>
+  <div class="ui-stat__body">
+    <div class="ui-stat__text">
+      <span class="ui-stat__value">{{ value() }}</span>
+      <span class="ui-stat__delta" [class.ui-stat__delta--bad]="deltaBad()">
+        <ui-icon [name]="deltaUp() ? 'arrow-up' : 'arrow-down'" /> {{ deltaText() }} vs last week
+      </span>
+    </div>
+    @if (points()) {
+      <svg class="ui-stat__spark" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true">
+        <polygon class="ui-stat__spark-area" [attr.points]="area()" />
+        <polyline [attr.points]="points()" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" />
+      </svg>
+    }
+  </div>
+</div>

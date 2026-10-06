@@ -1,0 +1,69 @@
+<div class="reports">
+  <section class="reports__stats">
+    <ui-stat label="Closed · 14 days" icon="check" [value]="closedTotal()" [delta]="18" [series]="throughput()" tone="success" />
+    <ui-stat label="Avg cycle time" icon="clock" [value]="avgCycle() + ' d'" [delta]="-11" [series]="cycleTime()" [lowerIsBetter]="true" />
+    <ui-stat label="Blocked share" icon="alert" [lowerIsBetter]="true" [value]="statusShare()[2].percent + '%'" [delta]="-4" [series]="[20, 18, 21, 15, 14, 14]" tone="warning" />
+  </section>
+
+  <section class="reports__grid">
+    <ui-card heading="Cycle time · last 8 sprints (days)">
+      <svg class="reports__line" viewBox="0 0 100 40" preserveAspectRatio="none" aria-label="Cycle time trend">
+        <polygon class="reports__area" [attr.points]="'0,40 ' + linePoints(cycleTime(), maxCycle()) + ' 100,40'" />
+        <polyline [attr.points]="linePoints(cycleTime(), maxCycle())" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke" />
+      </svg>
+      <div class="reports__axis">
+        @for (v of cycleTime(); track $index) {
+          <span>S{{ $index + 1 }}</span>
+        }
+      </div>
+    </ui-card>
+
+    <ui-card heading="Status share">
+      <div class="reports__share-bar">
+        @for (s of statusShare(); track s.status) {
+          <div [class]="'reports__share-seg reports__share-seg--' + s.tone" [style.width.%]="s.percent" [title]="s.label + ' ' + s.percent + '%'"></div>
+        }
+      </div>
+      <ul class="reports__legend">
+        @for (s of statusShare(); track s.status) {
+          <li>
+            <ui-badge [tone]="s.tone">{{ s.label }}</ui-badge>
+            <span>{{ s.count }} · {{ s.percent }}%</span>
+          </li>
+        }
+      </ul>
+    </ui-card>
+
+    <ui-card heading="By project" class="reports__projects">
+      <table class="reports__table">
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Tasks</th>
+            <th>Done</th>
+            <th>Blocked</th>
+            <th>Open hours</th>
+            <th>Progress</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (r of byProject(); track r.project) {
+            <tr>
+              <td class="reports__project">{{ r.project }}</td>
+              <td>{{ r.total }}</td>
+              <td>{{ r.done }}</td>
+              <td>{{ r.blocked }}</td>
+              <td>{{ r.hours }} h</td>
+              <td>
+                <div class="reports__progress">
+                  <ui-progress class="reports__progress-bar" [value]="r.percentDone" [warnAt]="100" />
+                  <span>{{ r.percentDone }}%</span>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </ui-card>
+  </section>
+</div>

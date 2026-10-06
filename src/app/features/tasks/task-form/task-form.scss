@@ -1,0 +1,40 @@
+@use 'styles/tokens' as t;
+
+.task-form {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: t.$space-4;
+}
+
+.task-form__field {
+  display: grid;
+  gap: t.$space-1;
+
+  input,
+  select {
+    width: 100%;
+    padding: t.$space-2 t.$space-3;
+    border: 1px solid t.$color-border;
+    border-radius: t.$radius-md;
+    font: inherit;
+    color: t.$color-text;
+    background: t.$color-surface;
+  }
+
+  input.ng-invalid.ng-touched { border-color: t.$color-danger; }
+}
+
+.task-form__field--wide { grid-column: 1 / -1; }
+
+.task-form__label {
+  font-size: t.$font-size-sm;
+  font-weight: 500;
+  color: t.$color-text-muted;
+}
+
+.task-form__actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: t.$space-3;
+}

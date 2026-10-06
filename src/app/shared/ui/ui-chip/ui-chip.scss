@@ -1,0 +1,45 @@
+@use 'styles/tokens' as t;
+
+.ui-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-2;
+  padding: t.$space-1 t.$space-3;
+  border-radius: t.$radius-full;
+  border: 1px solid t.$color-border;
+  background: t.$color-surface;
+  color: t.$color-text-muted;
+  font: inherit;
+  font-size: t.$font-size-sm;
+  font-weight: 600;
+  line-height: 1.6;
+  cursor: pointer;
+  transition:
+    background t.$transition-fast,
+    border-color t.$transition-fast,
+    color t.$transition-fast;
+
+  &:hover {
+    background: t.$color-surface-alt;
+    color: t.$color-text;
+  }
+
+  &--active,
+  &--active:hover {
+    background: t.$color-primary-soft;
+    border-color: t.$color-primary;
+    color: t.$color-primary;
+  }
+}
+.ui-chip__count {
+  min-width: t.$space-4;
+  padding: 0 t.$space-1;
+  border-radius: t.$radius-full;
+  background: t.$color-surface-alt;
+  font-size: t.$font-size-xs;
+  text-align: center;
+
+  .ui-chip--active & {
+    background: t.$color-surface;
+  }
+}

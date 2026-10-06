@@ -1,0 +1,101 @@
+@use 'styles/tokens' as t;
+
+.tasks {
+  display: grid;
+  gap: t.$space-4;
+}
+
+.tasks__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-4;
+}
+
+.tasks__chips {
+  display: flex;
+  gap: t.$space-2;
+}
+
+.tasks__search {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  width: t.$size-search;
+  padding: t.$space-2 t.$space-3;
+  border: 1px solid t.$color-border;
+  border-radius: t.$radius-md;
+  background: t.$color-surface;
+  color: t.$color-text-muted;
+  box-shadow: t.$shadow-sm;
+  transition:
+    border-color t.$transition-fast,
+    box-shadow t.$transition-fast;
+
+  &:focus-within {
+    border-color: t.$color-primary;
+    box-shadow: t.$ring-focus;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    color: t.$color-text;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.tasks__table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: t.$space-3 t.$space-2;
+    text-align: left;
+    border-bottom: 1px solid t.$color-border;
+    vertical-align: middle;
+  }
+
+  th {
+    font-size: t.$font-size-xs;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: t.$color-text-muted;
+    text-transform: uppercase;
+  }
+
+  tbody tr {
+    transition: background t.$transition-fast;
+
+    &:hover { background: t.$color-surface-alt; }
+  }
+
+  tr:last-child td { border-bottom: 0; }
+}
+
+.tasks__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-1;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+
+  &:hover { color: t.$color-primary; }
+}
+
+.tasks__title { display: block; font-weight: 500; }
+.tasks__project { display: block; font-size: t.$font-size-sm; color: t.$color-text-muted; }
+.tasks__owner { display: inline-flex; align-items: center; gap: t.$space-2; white-space: nowrap; }
+.tasks__muted { color: t.$color-text-muted; white-space: nowrap; }
+.tasks__row-actions { text-align: right; white-space: nowrap; }
