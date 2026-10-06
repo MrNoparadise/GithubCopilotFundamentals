@@ -1,0 +1,177 @@
+@use 'styles/tokens' as t;
+
+:host {
+  display: block;
+}
+
+.notification-list {
+  display: grid;
+  gap: t.$space-3;
+}
+
+// Segmented tabs: the active one is a raised white pill.
+.notification-list__tabs {
+  display: flex;
+  gap: t.$space-1;
+  width: fit-content;
+  padding: t.$space-1;
+  border-radius: t.$radius-md;
+  background: t.$color-surface-alt;
+
+  .notification-list--compact & { width: auto; }
+}
+
+.notification-list__tab {
+  flex: 1;
+  padding: t.$space-1 t.$space-3;
+  border: 0;
+  border-radius: t.$radius-sm;
+  background: transparent;
+  font: inherit;
+  font-size: t.$font-size-sm;
+  font-weight: 600;
+  color: t.$color-text-muted;
+  cursor: pointer;
+  transition:
+    background t.$transition-fast,
+    color t.$transition-fast;
+
+  &:hover { color: t.$color-text; }
+
+  &--active,
+  &--active:hover {
+    background: t.$color-surface;
+    color: t.$color-primary;
+    box-shadow: t.$shadow-sm;
+  }
+}
+
+.notification-list__items {
+  display: grid;
+  gap: t.$space-1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .notification-list--compact & {
+    max-height: t.$size-dropdown-list;
+    overflow-y: auto;
+  }
+}
+
+.notification-list__item {
+  display: flex;
+  align-items: center;
+  border-radius: t.$radius-md;
+  transition: background t.$transition-fast;
+
+  &:hover { background: t.$color-surface-alt; }
+
+  &--unread,
+  &--unread:hover { background: t.$color-primary-soft; }
+}
+
+.notification-list__open {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: t.$space-3;
+  min-width: 0;
+  padding: t.$space-3 t.$space-4;
+  border: 0;
+  border-radius: inherit;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+
+  .notification-list--compact & {
+    gap: t.$space-2;
+    padding: t.$space-2;
+  }
+}
+
+.notification-list__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: t.$size-icon-chip;
+  height: t.$size-icon-chip;
+  border-radius: t.$radius-md;
+  font-size: t.$font-size-lg;
+
+  &--info { background: t.$color-info-soft; color: t.$color-info; }
+  &--warning { background: t.$color-warning-soft; color: t.$color-warning; }
+  &--success { background: t.$color-success-soft; color: t.$color-success; }
+  &--danger { background: t.$color-danger-soft; color: t.$color-danger; }
+}
+
+.notification-list__text {
+  display: grid;
+  flex: 1;
+  gap: t.$space-1;
+  min-width: 0;
+}
+
+.notification-list__title,
+.notification-list__message {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.notification-list__title {
+  font-weight: 500;
+
+  .notification-list__item--unread & { font-weight: 700; }
+}
+
+.notification-list__message {
+  font-size: t.$font-size-sm;
+  color: t.$color-text-muted;
+}
+
+.notification-list__time {
+  flex: none;
+  font-size: t.$font-size-sm;
+  color: t.$color-text-muted;
+  white-space: nowrap;
+
+  .notification-list__item--unread & {
+    font-weight: 600;
+    color: t.$color-primary;
+  }
+}
+
+// Always takes its space so read and unread rows line up; only coloured when unread.
+.notification-list__dot {
+  flex: none;
+  width: t.$size-dot;
+  height: t.$size-dot;
+  border-radius: 50%;
+
+  .notification-list__item--unread & { background: t.$color-primary; }
+}
+
+.notification-list__dismiss {
+  display: inline-flex;
+  flex: none;
+  margin-right: t.$space-2;
+  padding: t.$space-1;
+  border: 0;
+  border-radius: t.$radius-sm;
+  background: none;
+  color: t.$color-text-muted;
+  font-size: t.$font-size-md;
+  cursor: pointer;
+  transition:
+    background t.$transition-fast,
+    color t.$transition-fast;
+
+  &:hover {
+    background: t.$color-border;
+    color: t.$color-text;
+  }
+}

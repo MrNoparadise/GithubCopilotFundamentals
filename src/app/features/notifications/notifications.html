@@ -1,0 +1,7 @@
+<ui-card [heading]="heading()">
+  <div card-actions class="notifications__actions">
+    <ui-badge [tone]="unread() ? 'info' : 'neutral'">{{ unread() }} unread</ui-badge>
+    <ui-button variant="ghost" [disabled]="!unread()" (click)="markAllRead()"><ui-icon name="check" /> Mark all as read</ui-button>
+  </div>
+  <app-notification-list />
+</ui-card>

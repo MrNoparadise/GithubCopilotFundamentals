@@ -1,0 +1,11 @@
+@use 'styles/tokens' as t;
+
+:host {
+  display: block;
+}
+
+.notifications__actions {
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+}

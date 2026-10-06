@@ -1,0 +1,47 @@
+<div class="notification-list" [class.notification-list--compact]="compact()">
+  <div class="notification-list__tabs" role="tablist" aria-label="Notification type" (keydown)="moveTab($event)">
+    @for (tab of tabs; track tab.value) {
+      <button
+        type="button"
+        role="tab"
+        class="notification-list__tab"
+        [class.notification-list__tab--active]="tab.value === active()"
+        [id]="id + '-tab-' + tab.value"
+        [attr.aria-selected]="tab.value === active()"
+        [attr.aria-controls]="id + '-panel'"
+        [tabIndex]="tab.value === active() ? 0 : -1"
+        (click)="select(tab.value)"
+      >
+        {{ tab.label }}
+      </button>
+    }
+  </div>
+
+  <div role="tabpanel" [id]="id + '-panel'" [attr.aria-labelledby]="id + '-tab-' + active()">
+    @if (rows().length) {
+      <ul class="notification-list__items">
+        @for (n of rows(); track n.id; let i = $index) {
+          <li class="notification-list__item" [class.notification-list__item--unread]="!n.read">
+            <button type="button" class="notification-list__open" [attr.aria-label]="n.label" (click)="markRead(n.id)">
+              <span [class]="'notification-list__icon notification-list__icon--' + n.tone"><ui-icon [name]="n.icon" /></span>
+              <span class="notification-list__text">
+                <span class="notification-list__title">{{ n.title }}</span>
+                <span class="notification-list__message">{{ n.message }}</span>
+              </span>
+              @if (n.member; as m) {
+                <ui-avatar [size]="compact() ? 'sm' : 'md'" [initials]="m.initials" [name]="m.name" [src]="m.photoUrl" />
+              }
+              <time class="notification-list__time" [attr.datetime]="n.at">{{ n.ago }}</time>
+              <span class="notification-list__dot"></span>
+            </button>
+            <button type="button" class="notification-list__dismiss" title="Dismiss" [attr.aria-label]="'Dismiss ' + n.title" (click)="dismiss(n.id, i)">
+              <ui-icon name="x" />
+            </button>
+          </li>
+        }
+      </ul>
+    } @else {
+      <ui-empty icon="bell" [title]="empty().title">{{ empty().hint }}</ui-empty>
+    }
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<button
+  #bellButton
+  type="button"
+  class="notification-bell__button"
+  [class.notification-bell__button--open]="open()"
+  [attr.aria-label]="buttonLabel()"
+  [attr.aria-expanded]="open()"
+  [attr.aria-controls]="open() ? panelId : null"
+  (click)="toggle()"
+>
+  <ui-icon name="bell" />
+  @if (unread()) {
+    <span class="notification-bell__count" aria-hidden="true">{{ countText() }}</span>
+  }
+</button>
+
+@if (open()) {
+  <section class="notification-bell__panel" [id]="panelId" aria-labelledby="notification-panel-title">
+    <header class="notification-bell__header">
+      <h2 class="notification-bell__title" id="notification-panel-title">Notifications</h2>
+      <ui-badge [tone]="unread() ? 'info' : 'neutral'">{{ unread() }} unread</ui-badge>
+      <ui-button class="notification-bell__mark" variant="ghost" [disabled]="!unread()" (click)="markAllRead()">Mark all as read</ui-button>
+    </header>
+
+    <app-notification-list [compact]="true" />
+
+    <footer class="notification-bell__footer">
+      <a class="notification-bell__view-all" routerLink="/notifications" (click)="close()">View all <ui-icon name="chevron" /></a>
+    </footer>
+  </section>
+}

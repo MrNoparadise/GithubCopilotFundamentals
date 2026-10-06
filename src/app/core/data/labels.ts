@@ -1,5 +1,5 @@
 import { BadgeTone, IconName } from '../../shared/ui';
-import { ActivityKind, TaskPriority, TaskStatus } from '../models';
+import { ActivityKind, NotificationType, TaskPriority, TaskStatus } from '../models';
 
 export const STATUS_LABEL: Record<TaskStatus, string> = {
   open: 'Open',
@@ -47,6 +47,29 @@ export const ACTIVITY_TONE: Record<ActivityKind, BadgeTone> = {
   commented: 'neutral',
   blocked: 'danger',
 };
+
+export const NOTIFICATION_TYPE_LABEL: Record<NotificationType, string> = {
+  info: 'Info',
+  warning: 'Warning',
+  success: 'Success',
+  error: 'Error',
+};
+
+export const NOTIFICATION_TYPE_ICON: Record<NotificationType, IconName> = {
+  info: 'info',
+  warning: 'alert',
+  success: 'check',
+  error: 'x-circle',
+};
+
+export const NOTIFICATION_TYPE_TONE: Record<NotificationType, BadgeTone> = {
+  info: 'info',
+  warning: 'warning',
+  success: 'success',
+  error: 'danger',
+};
+
+export const NOTIFICATION_TYPES: NotificationType[] = ['info', 'warning', 'success', 'error'];
 
 export const STATUSES: TaskStatus[] = ['open', 'in-progress', 'blocked', 'done'];
 

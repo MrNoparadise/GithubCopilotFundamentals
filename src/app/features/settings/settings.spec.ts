@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MemoryStorage } from '../../../testing/memory-storage';
 import { SettingsStore } from '../../core/data/settings.store';
+import { NotificationsStore } from '../../core/data/notifications.store';
 import { BROWSER_STORAGE } from '../../core/data/storage';
 import { TasksStore } from '../../core/data/tasks.store';
 import { Settings } from './settings';
@@ -59,9 +60,10 @@ describe('Settings', () => {
     expect(field('workspaceName').value).toBe('Platform · Q4 2026');
   });
 
-  it('Reset demo data asks first, then restores the sample tasks and default settings', async () => {
+  it('Reset demo data asks first, then restores the sample tasks, default settings and notifications', async () => {
     await type('workspaceName', 'Changed');
     await click('Save changes');
+    TestBed.inject(NotificationsStore).dismiss(1);
 
     await click('Reset demo data');
     expect(TestBed.inject(TasksStore).tasks().length).toBe(1);
@@ -71,6 +73,7 @@ describe('Settings', () => {
     expect(TestBed.inject(TasksStore).tasks().length).toBe(14);
     expect(settings()).toEqual({ workspaceName: 'Platform · Q4 2026', weekStart: 'monday', capacityWarning: 80 });
     expect(field('workspaceName').value).toBe('Platform · Q4 2026');
+    expect(TestBed.inject(NotificationsStore).items().length).toBe(8);
   });
 
   it('Cancel on the reset question keeps the data', async () => {

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NotificationsStore } from '../../core/data/notifications.store';
 import { SettingsStore } from '../../core/data/settings.store';
 import { TasksStore } from '../../core/data/tasks.store';
 import { UiButton, UiCard } from '../../shared/ui';
@@ -15,6 +16,7 @@ export class Settings {
   private readonly fb = inject(FormBuilder);
   private readonly settingsStore = inject(SettingsStore);
   private readonly tasksStore = inject(TasksStore);
+  private readonly notificationsStore = inject(NotificationsStore);
 
   private readonly current = this.settingsStore.settings();
 
@@ -42,10 +44,11 @@ export class Settings {
     this.form.reset(this.settingsStore.settings());
   }
 
-  /** Puts back the sample tasks and default settings, dropping everything saved in this browser. */
+  /** Puts back the sample tasks, default settings and sample notifications, dropping everything saved in this browser. */
   protected resetDemoData(): void {
     this.tasksStore.reset();
     this.settingsStore.reset();
+    this.notificationsStore.reset();
     this.form.reset(this.settingsStore.settings());
     this.confirmingReset.set(false);
   }

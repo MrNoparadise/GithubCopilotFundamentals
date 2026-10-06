@@ -4,6 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs';
 import { MembersStore } from '../../core/data/members.store';
+import { NotificationBell } from '../../features/notifications/notification-bell/notification-bell';
 import { UiAvatar, UiButton, UiIcon } from '../../shared/ui';
 
 const TITLES: Record<string, string> = {
@@ -11,12 +12,13 @@ const TITLES: Record<string, string> = {
   '/tasks': 'Tasks',
   '/team': 'Team',
   '/reports': 'Reports',
+  '/notifications': 'Notifications',
   '/settings': 'Settings',
 };
 
 @Component({
   selector: 'app-topbar',
-  imports: [DatePipe, UiAvatar, UiButton, UiIcon],
+  imports: [DatePipe, UiAvatar, UiButton, UiIcon, NotificationBell],
   templateUrl: './topbar.html',
   styleUrl: './topbar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

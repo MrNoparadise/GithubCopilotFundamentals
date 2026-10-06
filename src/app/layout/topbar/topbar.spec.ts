@@ -1,12 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, provideRouter } from '@angular/router';
+import { MemoryStorage } from '../../../testing/memory-storage';
+import { BROWSER_STORAGE } from '../../core/data/storage';
 import { Topbar } from './topbar';
 
 describe('Topbar', () => {
   let fixture: ComponentFixture<Topbar>;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({ providers: [provideRouter([{ path: 'tasks', children: [] }])] });
+    TestBed.configureTestingModule({
+      providers: [provideRouter([{ path: 'tasks', children: [] }]), { provide: BROWSER_STORAGE, useValue: new MemoryStorage() }],
+    });
     fixture = TestBed.createComponent(Topbar);
     await fixture.whenStable();
   });
@@ -37,6 +41,15 @@ describe('Topbar', () => {
     window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }));
 
     expect(document.activeElement).toBe(search());
+  });
+
+  it('shows the notification bell to the left of the user name', () => {
+    const actions = [...fixture.nativeElement.querySelector('.topbar__actions').children] as HTMLElement[];
+    const bell = actions.findIndex((e) => e.tagName === 'APP-NOTIFICATION-BELL');
+    const user = actions.findIndex((e) => e.classList.contains('topbar__user'));
+
+    expect(bell).toBeGreaterThan(-1);
+    expect(bell).toBe(user - 1);
   });
 
   it('New task opens the new task form on Tasks', async () => {
