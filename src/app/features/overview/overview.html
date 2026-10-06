@@ -24,6 +24,8 @@
     <ui-stat label="Open estimate" icon="clock" [value]="openHours() + ' h'" [delta]="-8" [series]="[70, 66, 64, 68, 60, 58, 58]" tone="warning" [lowerIsBetter]="true" />
   </section>
 
+  <app-notifications-panel />
+
   <section class="overview__grid">
     <ui-card heading="Due soon" class="overview__tasks">
       <ui-button card-actions variant="secondary" (click)="viewAll()">View all</ui-button>
